@@ -1,4 +1,4 @@
-WHY NOT A GIF HERE? TO SET THE MODE.
+![](https://media0.giphy.com/media/l46Cx1EkQmqryaSly/giphy.gif?cid=ecf05e47zkk3ksbq8icof0zafg3l111ai2munpvkgg1jwazt&rid=giphy.gif&ct=g)
 
 # Isla de los Monos
 
