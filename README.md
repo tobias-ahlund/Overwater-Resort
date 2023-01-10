@@ -1,16 +1,16 @@
 WHY NOT A GIF HERE? TO SET THE MODE.
 
-# Island name
+# Isla de los Monos
 
 Some text about your lovely island
 
-# Hotel name
+# Overwater Resort
 
 Why not add some info about the hotel of your dreams?
 
 # Instructions
 
-If your project requires some installation or similar, please inform your user 'bout it. For instance, if you want a more decent indentation of your .php files, you could edit [.editorconfig]('/.editorconfig').
+Visit the web page and make a reservation.
 
 # Code review
 
