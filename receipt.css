@@ -1,0 +1,17 @@
+.receipt {
+    position: fixed;
+    border: 1px solid black;
+    z-index: 1;
+    padding: 10px;
+    background-color: white;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+pre {
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 16px 0 10px 0;
+}
+

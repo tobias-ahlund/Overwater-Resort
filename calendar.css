@@ -1,0 +1,55 @@
+.calendar-container {
+    border: 1px solid lightgray;
+    width: 360px;
+    height: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 10px;
+}
+
+._1 {
+    grid-column-end: -1;
+}
+
+.calendar-item {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 100%;
+    font-family: Helvetica, sans-serif;
+    margin: 10px;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    padding: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.booked {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.budget-room-calendar-container, .standard-room-calendar-container, .luxury-room-calendar-container {
+    display: flex;
+    justify-content: center;
+}
+
+.budget-room-calendar, .standard-room-calendar, .luxury-room-calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.budget-room-calendar p, .budget-room-calendar h2, .standard-room-calendar p, .standard-room-calendar h2, .luxury-room-calendar p, .luxury-room-calendar h2 {
+    margin-bottom: 8px;
+}
+
+@media screen and (min-width: 900px) {
+    .budget-room-calendar-container, .standard-room-calendar-container, .luxury-room-calendar-container {
+        margin-top: 48px;
+        margin-left: auto;
+        margin-right: auto;
+        order: 2;
+    }
+}
