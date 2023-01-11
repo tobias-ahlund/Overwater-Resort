@@ -16,6 +16,7 @@
 
 .receipt {
     width: auto;
+    max-width: none;
 }
 
 .transfer-code-check p, .booking-fail p , .receipt p {

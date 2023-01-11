@@ -24,6 +24,16 @@
           "video": "https://www.youtube.com/watch?v=5Ym-k30X5PY"
         }
       ]
+    },
+    {
+      "island": "Isla de los Monos",
+      "hotel": "Overwater Resort",
+      "arrival_date": "2023-01-29",
+      "departure_date": "2023-01-31",
+      "total_cost": 1,
+      "stars": "2",
+      "features": null,
+      "additional_info": "Thank you for choosing Overwater Resort."
     }
   ]
 }
