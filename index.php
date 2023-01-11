@@ -210,7 +210,7 @@ require_once "receipt.php";
             </div>
             <div class="copyright-info">
                 <hr class="footer-hr">
-                <p>&#169;2023 Tobias Åhlund</p>
+                <p>&#169; 2023 Tobias Åhlund</p>
             </div>
         </div>
     </footer>
