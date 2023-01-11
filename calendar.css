@@ -39,10 +39,41 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .budget-room-calendar p, .budget-room-calendar h2, .standard-room-calendar p, .standard-room-calendar h2, .luxury-room-calendar p, .luxury-room-calendar h2 {
     margin-bottom: 8px;
+}
+
+._31 {
+    cursor: pointer;
+    position: relative;
+    color: lightgray;
+}
+
+._31 span {
+    visibility: hidden;
+}
+
+._31:hover span {
+    visibility: visible;
+}
+
+.day-31-info-budget, .day-31-info-standard, .day-31-info-luxury {
+    position: absolute;
+    left: 50%;
+    top: -5%;
+    transform: translateY(-100%);
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+    border: 1px solid lightgray;
+    color: black;
+    min-width: 250px;
+    max-width: 250px;
+    text-align: left;
 }
 
 @media screen and (min-width: 900px) {

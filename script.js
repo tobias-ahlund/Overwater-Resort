@@ -160,3 +160,21 @@ if (receiptButton && receipt) {
         receipt.classList.add("hide");
     });
 }
+
+const day31Budget = document.querySelector(".budget-room-calendar .calendar-container ._31");
+const day31InfoBudget = document.createElement("span");
+day31InfoBudget.classList.add("day-31-info-budget");
+day31InfoBudget.innerHTML = "Since February isn't yet available for reservations, it's not possible to stay the night in any of our rooms on January 31."
+day31Budget.appendChild(day31InfoBudget);
+
+const day31Standard = document.querySelector(".standard-room-calendar .calendar-container ._31");
+const day31InfoStandard = document.createElement("span");
+day31InfoStandard.classList.add("day-31-info-standard");
+day31InfoStandard.innerHTML = "Since February isn't yet available for reservations, it's not possible to stay the night in any of our rooms on January 31."
+day31Standard.appendChild(day31InfoStandard);
+
+const day31Luxury = document.querySelector(".luxury-room-calendar .calendar-container ._31");
+const day31InfoLuxury = document.createElement("span");
+day31InfoLuxury.classList.add("day-31-info-luxury");
+day31InfoLuxury.innerHTML = "Since February isn't yet available for reservations, it's not possible to stay the night in any of our rooms on January 31."
+day31Luxury.appendChild(day31InfoLuxury);

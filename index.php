@@ -180,8 +180,8 @@ require_once "receipt.php";
         <!-- Luxury room calendar -->
         <section class="luxury-room-calendar-container">
             <div class="luxury-room-calendar">
-                    <p>Luxury room availability</p>
-                    <h2>January 2023</h2>
+                <p>Luxury room availability</p>
+                <h2>January 2023</h2>
                 <?= showBookingsLuxury(); ?>
             </div>
         </section>
