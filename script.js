@@ -2,40 +2,38 @@ const bookingSuccessButton = document.querySelector(".booking-success-button");
 const bookingSuccess = document.querySelector(".booking-success"); 
 const bookingFailButton = document.querySelector(".booking-fail-button");
 const bookingFail = document.querySelector(".booking-fail");
-
 const budgetRoomContent = document.querySelector(".budget-room-content");
 const standardRoomContent = document.querySelector(".standard-room-content");
 const luxuryRoomContent = document.querySelector(".luxury-room-content");
-
 const budgetRoomCalendarContainer = document.querySelector(".budget-room-calendar-container");
 const standardRoomCalendarContainer = document.querySelector(".standard-room-calendar-container");
 const luxuryRoomCalendarContainer = document.querySelector(".luxury-room-calendar-container");
-
 const budget = document.querySelector(".budget-select");
 const budgetCalendar = document.querySelector(".budget-room-calendar");
 const standard = document.querySelector(".standard-select");
 const standardCalendar = document.querySelector(".standard-room-calendar");
 const luxury = document.querySelector(".luxury-select");
 const luxuryCalendar = document.querySelector(".luxury-room-calendar");
-
 const navBudgetItem = document.querySelector(".budget-select");
 const navStandardItem = document.querySelector(".standard-select");
 const navLuxuryItem = document.querySelector(".luxury-select");
-
 const roomSelect = document.getElementById("room");
 
+// Hides message on button click.
 if (bookingSuccessButton) {
     bookingSuccessButton.addEventListener("click", () => {
         bookingSuccess.classList.add("hide");
     });
 }
 
+// Hides message on button click.
 if (bookingFailButton) {
     bookingFailButton.addEventListener("click", () => {
         bookingFail.classList.add("hide");
     });
 }
 
+// Shows budget hotel room content on page load. Hides standard and luxury content.
 if (budget) {
     budget.classList.add("selected");
     standard.classList.remove("selected");
@@ -56,6 +54,7 @@ if (budget) {
     navBudgetItem.classList.add("nav-room-item-selected");
 }
 
+// Shows budget hotel room content when selected. Hides standard and luxury content.
 if (budget) {
     budget.addEventListener("click", () => {
         budget.classList.add("selected");
@@ -84,6 +83,7 @@ if (budget) {
     });
 }
 
+// Shows standard hotel room content when selected. Hides budget and luxury content.
 if (standard) {
     standard.addEventListener("click", () => {
         budget.classList.remove("selected");
@@ -112,6 +112,7 @@ if (standard) {
     });
 }
 
+// Shows luxury hotel room content when selected. Hides budget and standard content.
 if (luxury) {
     luxury.addEventListener("click", () => {
         budget.classList.remove("selected");
@@ -140,25 +141,7 @@ if (luxury) {
     });
 }
 
-// Ta kanske bort allt
-
-/* const width = window.matchMedia("(min-width: 900px)");
-
-if (width.matches) {
-    const callToActionBudget = document.querySelector(".call-to-action-budget h3");
-    if (callToActionBudget) {
-        callToActionBudget.innerHTML = "Book the room!";
-    }
-    const callToActionStandard = document.querySelector(".call-to-action-standard h3");
-    if (callToActionStandard) {
-        callToActionStandard.innerHTML = "Book the room!";
-    }
-    const callToActionLuxury = document.querySelector(".call-to-action-luxury h3");
-    if (callToActionLuxury) {
-        callToActionLuxury.innerHTML = "Book the room!";
-    }
-}
- */
+// Hides message on button click.
 const OKbutton = document.querySelector(".OK-button");
 const transferCodeFail = document.querySelector(".transfer-code-check");
 
@@ -168,6 +151,7 @@ if (OKbutton && transferCodeFail) {
     });
 }
 
+// Hides message on button click.
 const receipt = document.querySelector(".receipt");
 const receiptButton = document.querySelector(".receipt button");
 
@@ -176,6 +160,3 @@ if (receiptButton && receipt) {
         receipt.classList.add("hide");
     });
 }
-
-
-
