@@ -50,7 +50,8 @@ function checkValidTransferCode($transferCode, $totalCost)
 
     $response = $client->request('POST', 'https://www.yrgopelago.se/centralbank/transferCode', [
         'form_params' => [
-            'transferCode' => $transferCode
+            'transferCode' => $transferCode,
+            'total_cost' => $totalCost
         ]
     ]);
 
@@ -60,7 +61,7 @@ function checkValidTransferCode($transferCode, $totalCost)
         $transferCodeCheck = json_decode($response->getBody()->getContents());
 
         // Prints error message if error occurs.
-        if (!empty($transferCodeCheck->error)) : ?>
+        if (!empty($transferCodeCheck->error) || !isset($transferCode->transferCode)) : ?>
             <div class="transfer-code-check">
                 <p>It looks like your transfer code can't be found or is already used. Please try again.</p>
                 <button class="OK-button">Okay</button>

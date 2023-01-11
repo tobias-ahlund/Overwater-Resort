@@ -31,9 +31,19 @@
       "arrival_date": "2023-01-29",
       "departure_date": "2023-01-31",
       "total_cost": 1,
-      "stars": "2",
+      "stars": "5",
       "features": null,
       "additional_info": "Thank you for choosing Overwater Resort."
+    },
+    {
+      "island": "Alcatraz",
+      "hotel": "No hotel",
+      "arrival_date": "2023-01-10",
+      "departure_date": "Never",
+      "total_cost": 100,
+      "stars": "1",
+      "features": null,
+      "additional_info": "Thank you for choosing prison."
     }
   ]
 }
