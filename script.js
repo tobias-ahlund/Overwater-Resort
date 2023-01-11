@@ -161,6 +161,7 @@ if (receiptButton && receipt) {
     });
 }
 
+// Info about January 31.
 const day31Budget = document.querySelector(".budget-room-calendar .calendar-container ._31");
 const day31InfoBudget = document.createElement("span");
 day31InfoBudget.classList.add("day-31-info-budget");
