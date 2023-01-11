@@ -61,7 +61,7 @@ function checkValidTransferCode($transferCode, $totalCost)
         $transferCodeCheck = json_decode($response->getBody()->getContents());
 
         // Prints error message if error occurs.
-        if (!empty($transferCodeCheck->error) || !isset($transferCode->transferCode)) : ?>
+        if (!empty($transferCodeCheck->error) || is_null($transferCodeCheck->transferCode)) : ?>
             <div class="transfer-code-check">
                 <p>It looks like your transfer code can't be found or is already used. Please try again.</p>
                 <button class="OK-button">Okay</button>
