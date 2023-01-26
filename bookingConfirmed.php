@@ -24,7 +24,19 @@ function booking($arrDate, $depDate, $room, $selectedExtraFeatures)
     $statement->execute();
 
     // Magnus V. - Aaaaaand finally the function that puts the selected extra features in the database is put here:
-    bookingAddSelectedFeatures($arrDate, $room, $selectedExtraFeatures);
+    foreach ($selectedExtraFeatures as $selectedExtraFeature) {
+        if ($selectedExtraFeature['feature'] != "") {
+            foreach ($selectedExtraFeatures as $selectedExtraFeature) {
+                // Magnus V. - This creates an array that only contains the extra features that was actually selected:
+                if ($selectedExtraFeature['feature'] != "") {
+                    $cleanFeaturesList[] = $selectedExtraFeature;
+                }
+            }
+            // Magnus V - Adds extra features to table extra_features_selected if they were selected:
+            bookingAddSelectedFeatures($arrDate, $room, $cleanFeaturesList);
+            break;
+        }
+    }
 }
 
 // Magnus V. - (Seriously, this is the last function I'm gonna create for this webpage) This will be appended to booking-function, and will add the selected extra features to the "extra featueres selected"-table:

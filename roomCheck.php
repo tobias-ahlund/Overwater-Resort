@@ -31,7 +31,9 @@ function transferCodeSuccess($transferCode, $totalCost)
             if ($checkIssetExtraFeatures) :
                 foreach ($_POST[$postExtraFeatureName] as $value) :
                     $selectedExtraFeatures[] = ['feature' => $features['feature_name'], 'featureCost' => (int)$value];
-                endforeach;;
+                endforeach;
+            // Magnus V. - 26 jan-23. Late bug-fixing. Added this variable-definiton to prevent errors when no extra features are selected:
+            else : $selectedExtraFeatures[] = ['feature' => "", 'featureCost' => 0];
             endif;
 
         endforeach;
