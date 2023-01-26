@@ -7,6 +7,9 @@ require_once "receipt.php";
 require_once "moneyTransfer.php";
 require_once "checkTransferCode.php";
 
+// Magnus V. - This is required beacause fetching the extra_features-table is needed to check if some of the extra features are set:
+// require "app/users/addFeatures.php"; WTF!!! Redeclare error!?
+
 // Function is called from checkTransferCode.php with a valid transfer code as argument.
 function transferCodeSuccess($transferCode, $totalCost)
 {
@@ -16,12 +19,32 @@ function transferCodeSuccess($transferCode, $totalCost)
         $depDate = $_POST["depDate"];
         $room = $_POST["room"];
 
-        return checkRoomAvailable($arrDate, $depDate, $room, $transferCode);
+        // Magnus V. - Added (parts of) this logic (again) to include selected extra features: |--- --- --->
+        $path = './';
+        $dbh = connectBookingsDatabase($path);
+        $currentExtraFeatures = getFeaturesFromDatabase($dbh);
+
+        foreach ($currentExtraFeatures as $featureNr => $features) :
+            $postExtraFeatureName = str_replace(" ", "-", strtolower($features['feature_name']));
+            $checkIssetExtraFeatures = isset($_POST[$postExtraFeatureName]);
+
+            if ($checkIssetExtraFeatures) :
+                foreach ($_POST[$postExtraFeatureName] as $value) :
+                    $selectedExtraFeatures[] = ['feature' => $features['feature_name'], 'featureCost' => (int)$value];
+                endforeach;;
+            endif;
+
+        endforeach;
+
+        // <--- --- ---|
+
+        return checkRoomAvailable($arrDate, $depDate, $room, $transferCode, $selectedExtraFeatures);
     endif;
 }
 
 // Checks if the room is already booked or not. If not, booking is made and receipt is created. Error message is displayed if booking error occurs.
-function checkRoomAvailable($arrDate, $depDate, $room, $transferCode)
+// Magnus V. - Added "$selectedExtraFeatures" to this function. The idea is to complete the receipt with extra features.
+function checkRoomAvailable($arrDate, $depDate, $room, $transferCode, $selectedExtraFeatures)
 {
     $database = new PDO("sqlite:bookings.db");
 
@@ -41,9 +64,10 @@ function checkRoomAvailable($arrDate, $depDate, $room, $transferCode)
     $bookings = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     if (empty($bookings) && $arrDate != $depDate && $arrDate < $depDate) : ?>
-        <?php echo booking($arrDate, $depDate, $room);
+        <?php echo booking($arrDate, $depDate, $room, $selectedExtraFeatures);
         moneyTransfer($transferCode);
-        
+
+        // Magnus V. - The same hard-scripted logic here again. It's almost 11PM. Why are you doing this to me? :(
         if ($room == "budget") :
             $cost = "1";
         elseif ($room == "standard") :
@@ -56,21 +80,33 @@ function checkRoomAvailable($arrDate, $depDate, $room, $transferCode)
         $depDate = new DateTime($depDate);
         $period = date_diff($arrDate, $depDate);
         $days = $period->days;
-        $arrDate = $arrDate->format("Y-m-d"); 
-        $depDate = $depDate->format("Y-m-d"); 
-        
-        $totalCost = $cost * $days;
+        $arrDate = $arrDate->format("Y-m-d");
+        $depDate = $depDate->format("Y-m-d");
+
+        // Magnus V. This will modify $totalCost to include the selected extra features:
+        $extrasCost = 0;
+
+        foreach ($selectedExtraFeatures as $selectedExtraFeature) :
+            $extrasCost += $selectedExtraFeature['featureCost'];
+        endforeach;
+
+        $totalExtrasCost = $extrasCost * $days;
+        $totalBookingCost = $cost * $days;
 
         // $1 discount if more than one night is booked.
-        if ($room == "budget" && $totalCost > "1") :
-            $totalCost -= "1";
-        elseif ($room == "standard" && $totalCost > "2") :
-            $totalCost -= "1";
-        elseif ($room == "luxury" && $totalCost > "3") :
-                $totalCost -= "1";
+        // Magnus V - Rewrote this part a little to just handle the room-cost:
+        if ($room == "budget" && $totalBookingCost > "1") :
+            $totalBookingCost -= "1";
+        elseif ($room == "standard" && $totalBookingCost > "2") :
+            $totalBookingCost -= "1";
+        elseif ($room == "luxury" && $totalBookingCost > "3") :
+            $totalBookingCost -= "1";
         endif;
 
-        return receipt($arrDate, $depDate, $totalCost);
+        $totalCost = $totalBookingCost + $totalExtrasCost;
+
+        //Magnus V. - Added the array with selected extra features, to be added to the receipt.
+        return receipt($arrDate, $depDate, $totalCost, $selectedExtraFeatures);
     elseif (!empty($bookings)) : ?>
         <div class="booking-fail">
             <p>We are sorry. The room is already booked during your chosen period. Please try other dates.</p>
@@ -81,5 +117,5 @@ function checkRoomAvailable($arrDate, $depDate, $room, $transferCode)
             <p>We are sorry. We are unable to fulfill you request. Please try other dates.</p>
             <button class="booking-fail-button">Okay</button>
         </div>
-    <?php endif;
+<?php endif;
 }

@@ -1,0 +1,41 @@
+/* THIS CSS-FILE MOSTLY CONCERNS THE HOTEL MANAGER'S PAGE, SINCE SOME PREVIOUS CSS-PARAMETERS NEED TO BE OVERRIDDEN HERE */
+
+/* These two css-classes helps keep a basic layout, with a header and footer, on non-main pages. Error messages and such will appear correctly on those pages. |--- ---> */
+.page-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.actions-space,
+.features-space {
+  padding: 20px 0 0 0;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+/* <--- --- ---| */
+
+.feature-handler-wrapper {
+  width: auto;
+  height: auto;
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-space-button {
+  width: 370px;
+}
+
+/* These css-classes are used in main.php, but are placed here since they concern the "extra features" printed from bookings.db. |--- ---> */
+.extra-features-container {
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
+  margin: 8px 0 0 0;
+  display: grid;
+  grid: auto-flow / 1fr 1fr;
+  gap: 5px 24px;
+}

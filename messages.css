@@ -1,36 +1,47 @@
-.transfer-code-check, .booking-fail, .receipt {
-    height: auto;
-    max-width: 350px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    color: black;
-    font-family: Helvetica, serif;
-    border-radius: 10px;
-    position: fixed;
-    z-index: 1;
-    padding: 30px;
-    background-color: white;
-    top: 20vh;
-    left: 50%;
-    transform: translateX(-50%);
+/* Magnus V - added class "user-name-password-fail to messages.css */
+.transfer-code-check,
+.booking-fail,
+.receipt,
+.user-name-password-fail {
+  height: auto;
+  max-width: 350px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: black;
+  font-family: Helvetica, serif;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 1;
+  padding: 30px;
+  background-color: white;
+  top: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .receipt {
-    width: auto;
-    max-width: none;
+  width: auto;
+  max-width: none;
 }
 
-.transfer-code-check p, .booking-fail p , .receipt p {
-    font-size: 16px;
+.transfer-code-check p,
+.booking-fail p,
+.receipt p,
+.user-name-password-fail p {
+  font-size: 16px;
 }
 
-.OK-button, .booking-fail-button, .receipt button {
-    width: 100%;
-    margin: 30px 0 0 0;
-    border-radius: 10px;
-    background-color: #012340;
-    color: white;
+.OK-button,
+.booking-fail-button,
+.receipt button {
+  width: 100%;
+  margin: 30px 0 0 0;
+  border-radius: 10px;
+  background-color: #012340;
+  color: white;
 }
 
-.OK-button:hover, .booking-fail-button:hover, .receipt button:hover {
-    color: white;
+.OK-button:hover,
+.booking-fail-button:hover,
+.receipt button:hover {
+  color: white;
 }
