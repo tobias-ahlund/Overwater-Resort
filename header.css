@@ -1,41 +1,78 @@
+/* Magnus V - Header element is changed form flex-box to grid-box to accomdate the new login-elements */
 header {
-    height: 100px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #012340;
-    color: cornsilk;
+  height: 100px;
+  width: 100%;
+  display: grid;
+  grid-template: 1fr / 1fr 2fr 1fr;
+  background-color: #012340;
+  color: cornsilk;
 }
 
+/* Magnus V - Added added these two elements to wrap the old header content, and the login-elements */
+.landing-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column: 2 / span 1;
+}
+
+.login-wrapper {
+  padding: 0 50px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Magnus V - Added drop-down-login fields here */
+.login-content {
+  display: inline-block;
+  position: relative;
+}
+
+.login-content span:hover,
+.login-content a:hover {
+  color: darkgray;
+}
+
+.login-content a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: cornsilk;
+}
+
+/* Magnus V - The CSS varibles for the form- , button and fields are put in bookingsForm.css and that CSS-file will be renamed "forms.css" */
+
+/* --- --- --- */
+
 header img {
-    margin: 0 0 7px 2px;
+  margin: 0 0 7px 2px;
 }
 
 .header-hr {
-    border: 0.5px solid black;
-    width: 160px;
-    margin-bottom: 4px;
-    border: 0.5px solid cornsilk;
-    width: 70px;
-    border: 0.5px solid cornsilk;
-    border: none;
-    background: cornsilk;
-    height: 1px;
-    margin: auto;
+  border: 0.5px solid black;
+  width: 160px;
+  margin-bottom: 4px;
+  border: 0.5px solid cornsilk;
+  width: 70px;
+  border: 0.5px solid cornsilk;
+  border: none;
+  background: cornsilk;
+  height: 1px;
+  margin: auto;
 }
 
 .hr-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .hr-container img {
-    margin: auto 0 auto 2px;
+  margin: auto 0 auto 2px;
 }
 
 .hr-container img:last-of-type {
-    margin: auto 2px auto 0;
+  margin: auto 2px auto 0;
 }

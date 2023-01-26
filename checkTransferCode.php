@@ -5,6 +5,9 @@ declare(strict_types=1);
 require "vendor/autoload.php";
 require_once "moneyTransfer.php";
 
+// Magnus V. - This is required beacause fetching the extra_features-table is needed to check if some of the extra features are set:
+require "app/users/addFeatures.php";
+
 // Using Guzzle for POST requests.
 use GuzzleHttp\Client;
 
@@ -25,17 +28,46 @@ if (isset($_POST["transferCode"], $_POST["room"], $_POST["arrDate"], $_POST["dep
     $depDate = new DateTime($depDate);
     $period = date_diff($arrDate, $depDate);
     $days = $period->days;
-    
-    $totalCost = $cost * $days;
+
+    // Magnus V. - isset-logic (unecessary complicated, no doubt) for extra features |--- --- --->
+    $path = './';
+    $dbh = connectBookingsDatabase($path);
+    $currentExtraFeatures = getFeaturesFromDatabase($dbh);
+    $extrasCost = 0;
+
+    foreach ($currentExtraFeatures as $featureNr => $features) :
+        $postExtraFeatureName = str_replace(" ", "-", strtolower($features['feature_name']));
+        $checkIssetExtraFeatures = isset($_POST[$postExtraFeatureName]);
+
+        //Magnus V. - Creates an array with selected extra features, and their respective costs:
+        if ($checkIssetExtraFeatures) :
+            foreach ($_POST[$postExtraFeatureName] as $value) :
+                $selectedExtraFeatures[] = ['feature' => $features['feature_name'], 'featureCost' => (int)$value];
+                $extrasCost += (int)$value;
+            endforeach;;
+        endif;
+
+    endforeach;
+
+    // <--- --- ---|
+
+    // Magnus V - Rewrote this part a little bit to include extra features-cost |--- --- --->
+    $totalExtrasCost = $extrasCost * $days;
+    $totalBookingCost = $cost * $days;
+
+    // <--- --- ---|
 
     // $1 discount if more than one night is booked.
-    if ($room == "budget" && $totalCost > "1") :
-        $totalCost -= "1";
-    elseif ($room == "standard" && $totalCost > "2") :
-        $totalCost -= "1";
-    elseif ($room == "luxury" && $totalCost > "3") :
-        $totalCost -= "1";
+    // Magnus V - Rewrote this part a little to just handle the room-cost:
+    if ($room == "budget" && $totalBookingCost > "1") :
+        $totalBookingCost -= "1";
+    elseif ($room == "standard" && $totalBookingCost > "2") :
+        $totalBookingCost -= "1";
+    elseif ($room == "luxury" && $totalBookingCost > "3") :
+        $totalBookingCost -= "1";
     endif;
+
+    $totalCost = $totalBookingCost + $totalExtrasCost;
 
     $transferCode = $_POST["transferCode"];
     checkValidTransferCode($transferCode, $totalCost);
@@ -66,7 +98,7 @@ function checkValidTransferCode($transferCode, $totalCost)
                 <p>It looks like your transfer code can't be found or is already used. Please try again.</p>
                 <button class="OK-button">Okay</button>
             </div>
-        <?php endif;
+            <?php endif;
 
         // Calls a new function if the transfer code is valid and there are sufficient funds.
         if (!empty($transferCodeCheck->transferCode)) :
@@ -75,12 +107,12 @@ function checkValidTransferCode($transferCode, $totalCost)
 
             if ($amount >= $totalCost) :
                 transferCodeSuccess($transferCode, $totalCost);
-            elseif ($amount < $totalCost): ?> 
+            elseif ($amount < $totalCost) : ?>
                 <div class="transfer-code-check">
                     <p>Sadly your booking didn't go through due to insufficient funds. The total cost is $<?= $totalCost; ?> while your funds are $<?= $amount; ?>.</p>
                     <button class="OK-button">Okay</button>
                 </div>
-            <?php endif;
+<?php endif;
         endif;
     endif;
 }
