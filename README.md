@@ -1,16 +1,16 @@
-![](https://media0.giphy.com/media/l46Cx1EkQmqryaSly/giphy.gif?cid=ecf05e47zkk3ksbq8icof0zafg3l111ai2munpvkgg1jwazt&rid=giphy.gif&ct=g)
+![](https://media2.giphy.com/media/3otPoBnTKMSXegX2fK/giphy.gif?cid=ecf05e47xty2pulrdr3hrnu30v0dhyxokursu0olqe2v7pz0&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
-# Isla de los Monos
+# About
 
-Some text about your lovely island
+A project where I made a web page for a fictional hotel. 
 
 # Overwater Resort
 
-Why not add some info about the hotel of your dreams?
+Established in the 80's. Located on the island of Isla de los Monos which is as real as its archipelago Yrgopelagio. 
 
 # Instructions
 
-Visit the web page and make a reservation.
+Visit the hotel's web page and make a reservation.
 
 # Code review
 
